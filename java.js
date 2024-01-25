@@ -15,19 +15,29 @@ form.addEventListener("submit", async (event) => {
     const div = document.createElement("div");
     const image = document.createElement("img");
     const name = document.createElement("h1");
+    const hp = document.createElement("p");
+    const attack = document.createElement("p");
+    const abilities = document.createElement("p");
+
     div.className = "card";
     image.src = newPokemon.sprites.other.dream_world.front_default;
     name.textContent = newPokemon.name;
+    hp.textContent = `HP: ${newPokemon.stats[0].base_stat}`;
+    attack.textContent = `Attack: ${newPokemon.stats[1].base_stat}`;
+
+    // Display abilities (if any)
+    if (newPokemon.abilities.length > 0) {
+      abilities.textContent = `Abilities: ${newPokemon.abilities
+        .map((ability) => ability.ability.name)
+        .join(", ")}`;
+    }
+
     div.appendChild(name);
     div.appendChild(image);
+    div.appendChild(hp);
+    div.appendChild(attack);
+    div.appendChild(abilities);
     root.appendChild(div);
-
-    // another image option:
-    // image.src = newPokemon.sprites.front_default;
-    // other ideas:
-    // div.appendChild(pokemonNameLabel);
-    // div.appendChild(pokemonAttack);
-    // div.appendChild(pokemonHealth);
   } catch (error) {
     console.error("Error fetching Pokemon:", error);
   }

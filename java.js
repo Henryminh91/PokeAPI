@@ -2,6 +2,22 @@ const API_URL = "https://pokeapi.co/api/v2/pokemon";
 const root = document.getElementById("root");
 const form = document.getElementById("addPokemonForm");
 
+// Mapping of Pokemon names to colors
+const pokemonColors = {
+  pikachu: "#FFD700", 
+  charizard: "#FF4500", 
+  squirtle: "#87CEEB", 
+  bulbasaur: "#00FF00",
+  charmander: "#FF0000",
+  raichu: "#FFD700",
+};
+
+// Function to get a color based on the Pokemon's name
+function getColorByPokemonName(name) {
+  const lowerCaseName = name.toLowerCase();
+  return pokemonColors[lowerCaseName] || "#808080"; // Default gray if not found
+}
+
 form.addEventListener("submit", async (event) => {
   // Prevents the form from submitting and refreshing the page
   event.preventDefault();
@@ -37,6 +53,10 @@ form.addEventListener("submit", async (event) => {
     div.appendChild(hp);
     div.appendChild(attack);
     div.appendChild(abilities);
+
+    // Assign background color based on the Pokemon's name
+    div.style.backgroundColor = getColorByPokemonName(newPokemon.name);
+
     root.appendChild(div);
   } catch (error) {
     console.error("Error fetching Pokemon:", error);

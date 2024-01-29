@@ -41,7 +41,7 @@ form.addEventListener("submit", async (event) => {
     hp.textContent = `HP: ${newPokemon.stats[0].base_stat}`;
     attack.textContent = `Attack: ${newPokemon.stats[1].base_stat}`;
 
-    // Display abilities (if any)
+    // Display abilities
     if (newPokemon.abilities.length > 0) {
       abilities.textContent = `Abilities: ${newPokemon.abilities
         .map((ability) => ability.ability.name)
